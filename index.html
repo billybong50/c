@@ -1,0 +1,23 @@
+<!doctype html>
+<button onclick="launch()">Launch in about:blank</button>
+
+<script>
+function launch() {
+  const tab = window.open("about:blank", "_blank");
+  if (!tab) {
+    alert("Please allow pop-ups for this page.");
+    return;
+  }
+
+  tab.document.title = "Coke Zero";
+  tab.document.body.style.cssText = "margin:0";
+
+  const frame = tab.document.createElement("iframe");
+  frame.src = "https://cokezero.uk";
+  frame.title = "Coke Zero";
+  frame.setAttribute("sandbox", "allow-scripts allow-same-origin allow-forms");
+  frame.style.cssText = "border:0;width:100vw;height:100vh";
+
+  tab.document.body.appendChild(frame);
+}
+</script>
